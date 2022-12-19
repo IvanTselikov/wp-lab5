@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 const Search = (props) => {
     const [ searchValue, setSearchValue ] = useState('')
@@ -13,9 +13,10 @@ const Search = (props) => {
     }
 
     const handleFilter = (event) => {
-        setType(event.target.value,
-            () => enterHandler(searchValue, type))
+        setType(event.target.value)
     }
+
+    useEffect(() => enterHandler(searchValue, type), [ type ])
 
     return (
         <div className='row'>
@@ -30,7 +31,7 @@ const Search = (props) => {
                 <button
                     className='btn'
                     onClick={ () => enterHandler(searchValue, type) }>
-                    Найти
+                    Поиск
                 </button>
             </div>
             <p>
